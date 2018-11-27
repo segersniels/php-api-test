@@ -35,7 +35,7 @@ class API
         return $customer;
     }
 
-    private function calculateSwitchDiscount($items)
+    public function calculateSwitchDiscount($items)
     {
         $discounted = $items;
         foreach ($items as $idx => $item) {
@@ -49,7 +49,7 @@ class API
         return $discounted;
     }
 
-    private function calculateToolDiscount($items)
+    public function calculateToolDiscount($items)
     {
         $discounted = $items;
         // Calculate tool 20% discount on lowest item
@@ -77,7 +77,7 @@ class API
         return $discounted;
     }
 
-    private function calculateRevenueDiscount($id, $items)
+    public function calculateRevenueDiscount($id, $items)
     {
         $total = 0;
         $discounted = null;
