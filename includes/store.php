@@ -31,4 +31,28 @@ class Store
             echo '{"error":{"text":' . $e->getMessage() . '}}';
         }
     }
+
+    public function getProducts()
+    {
+        $products = $this->query('SELECT * FROM products');
+        return $products;
+    }
+
+    public function getProduct($id)
+    {
+        $product = $this->queryById("SELECT * FROM products WHERE id=?", $id);
+        return $product;
+    }
+
+    public function getCustomers()
+    {
+        $customers = $this->query('SELECT * FROM customers');
+        return $customers;
+    }
+
+    public function getCustomer($id)
+    {
+        $customer = $this->queryById("SELECT * FROM customers WHERE id=?", $id);
+        return $customer;
+    }
 }
