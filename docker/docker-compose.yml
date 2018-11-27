@@ -1,0 +1,8 @@
+mysql:
+  image: mysql:8
+  command: --default-authentication-plugin=mysql_native_password
+  ports:
+    - "3306:3306"
+  environment:
+    MYSQL_DATABASE: "teamleader"
+    MYSQL_ROOT_PASSWORD: "example"
