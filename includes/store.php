@@ -2,11 +2,16 @@
 
 class Store
 {
+    private $settings;
     private $db;
 
-    public function __construct($db)
+    public function __construct($settings)
     {
-        $this->db = $db;
+        $this->settings = $settings['db'];
+        $this->db = new PDO("mysql:host=" . $this->settings['host'] . ";port=" . $this->settings['port'] . ";dbname=" . $this->settings['dbname'],
+            $this->settings['user'], $this->settings['pass']);
+        $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $this->db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     }
 
     public function query($query)

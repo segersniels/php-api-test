@@ -1,6 +1,8 @@
 <?php
-// DIC configuration
 
+require __DIR__ . '/../includes/api.php';
+
+// DIC configuration
 $container = $app->getContainer();
 
 // view renderer
@@ -18,12 +20,9 @@ $container['logger'] = function ($c) {
     return $logger;
 };
 
-// mysql
-$container['db'] = function ($c) {
-    $settings = $c->get('settings')['db'];
-    $pdo = new PDO("mysql:host=" . $settings['host'] . ";port=" . $settings['port'] . ";dbname=" . $settings['dbname'],
-        $settings['user'], $settings['pass']);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-    return $pdo;
+// api
+$container['api'] = function ($c) {
+    $settings = $c->get('settings');
+    $api = new API($settings);
+    return $api;
 };

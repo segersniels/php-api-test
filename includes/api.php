@@ -7,9 +7,9 @@ class API
     private $store;
     private $discount;
 
-    public function __construct($db)
+    public function __construct($settings)
     {
-        $this->store = new Store($db);
+        $this->store = new Store($settings);
         $this->discount = new Discount($this->store);
     }
 
